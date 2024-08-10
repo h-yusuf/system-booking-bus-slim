@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %} | Sobat Gurun Tech Framework</title>
+	<link href="{{ assets('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/css/bootstrap-icons.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/css/auth.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5 mb-5">
+	<div class="row d-flex align-items-center justify-content-center">
+		<div class="col-md-5">
+			{% include 'partials/flash.twig' %}
+		</div>
+	</div>
+	{% block content %}{% endblock %}
+</div>
+<footer style="text-align: center; font-size: 12px">
+	{% block footer %}
+		<a href="{{ route('index') }}">Home</a>
+	{% endblock %}
+</footer>
+<script src="{{ assets('assets/js/bootstrap.bundle.min.js') }}"></script>
+{% block innerjs %} {% endblock %}
+</body>
+</html>

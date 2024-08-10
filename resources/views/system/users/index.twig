@@ -1,0 +1,135 @@
+{% extends "layouts/app.twig" %}
+
+{% block title %}{{ lang.users }}{% endblock %}
+
+{% block content %}
+	{% if hasRole('super_admin') %}
+	<div class="page-wrapper">
+		<div class="page-content">
+
+			{% include 'partials/flash.twig' %}
+
+			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+				<div class="breadcrumb-title pe-3">{{ lang.manage_users }}</div>
+				<div class="ps-3">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb mb-0 p-0">
+							<li class="breadcrumb-item active" aria-current="page">
+								<a href="{{ route('user.create') }}" class="btn btn-outline-dark btn-sm">
+									<i class="bi bi-plus"></i>{{ lang.add }} {{ lang.user }}
+								</a>
+							</li>
+						</ol>
+					</nav>
+				</div>
+				<div class="ms-auto">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary">{{ lang.options }}</button>
+						<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+							<a class="dropdown-item" href="{{ route('user.export',{'type':'pdf'}) }}"><i class="bi bi-file-pdf"></i> {{ lang.pdf }}</a>
+							<a class="dropdown-item" href="{{ route('user.export',{'type':'xlsx'}) }}"><i class="bi bi-file-excel"></i> {{ lang.excel }}</a>
+							<a class="dropdown-item" href="{{ route('user.export',{'type':'csv'}) }}"><i class="bi bi-file"></i> {{ lang.csv }}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end breadcrumb-->
+
+			<div class="row">
+				<div class="col-12">
+					<div class="card shadow-none border">
+						<div class="card-body">
+							<div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+								<div class="row">
+									<div class="col-sm-12">
+										<table id="datatable" class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable_info">
+											<thead>
+											<tr>
+												<th>ID</th>
+												<th>{{ lang.user_date }}</th>
+												<th>{{ lang.user_email }}</th>
+												<th>{{ lang.role }}</th>
+												<th style="width: 7%">{{ lang.user_status }}</th>
+												<th style="width: 7%">{{ lang.verified }}</th>
+												<th style="width: 10%">{{ lang.actions }}</th>
+											</tr>
+											</thead>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> <!-- end col -->
+			</div> <!-- end row -->
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block innerjs %}
+	<script>
+			var dataTable = $('#datatable').dataTable({
+				"processing": true,
+				"serverSide": true,
+				iDisplayLength:25,
+				"order": [[0, "desc" ]],
+				"ajax": "{{ route('user.datatable') }}",
+				columns: [
+					{data: 'id', bVisible:false},
+					{data: 'registered',
+						render: function (data, type, row) {
+							return moment(new Date(data*1000).toString()).format('DD/MM/YYYY');
+						}
+					},
+					{data: 'email'},
+					{data: 'roles_mask',
+						render: function (data, type, row) {
+							if(data== {{ role.super_admin }}){
+								return '<a href="#" class="btn btn-outline-dark btn-sm">{{ lang.role_super_admin }}</a>'
+							}
+							else if(data=={{ role.admin }}){
+								return '<a href="#" class="btn btn-outline-dark btn-sm">{{ lang.role_admin }}</a>'
+							}
+							else if(data== {{ role.user }}){
+								return '<a href="#" class="btn btn-outline-dark btn-sm">{{ lang.role_user }}</a>'
+							}
+							return '<a href="#" class="btn btn-outline-dark btn-sm">none</a>'
+						}
+					},
+					{data: 'status',
+						render: function (data, type, row) {
+							if(data==0){
+								return '<a href="#" class="btn btn-outline-success btn-sm">{{ lang.active }}</a>'
+							}
+							else if(data==5){
+								return '<a href="#" class="btn btn-outline-dark btn-sm">{{ lang.suspended }}</a>'
+							}
+							else if(data==3){
+								return '<a href="#" class="btn btn-outline-dark btn-sm">{{ lang.locked }}</a>'
+							}
+						}
+					},
+					{data: 'verified',
+						render: function (data, type, row) {
+							if(data==1){
+								return '<a href="#" class="btn btn-outline-success btn-sm">{{ lang.verified }}</a>'
+							}
+							return '<a href="#" class="btn btn-outline-danger btn-sm">{{ lang.pending }}</a>'
+						}
+					},
+
+					{
+						data: 'action',
+						orderable : false,
+						searchable: false,
+					}
+
+				],
+			});
+	</script>
+{% endblock %}
+
+

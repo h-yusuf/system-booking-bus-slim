@@ -1,0 +1,32 @@
+{% extends "layouts/auth.twig" %}
+
+{% block title %}{{ lang.login }}{% endblock %}
+
+{% block content %}
+	<form action="{{route('login')}}" name="login" method="post">
+		{{ csrf.field | raw }}
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="col-md-5">
+				<div class="card px-5 py-5 shadow-none">
+					<h5 class="mt-3">{{ lang.login }}</h5>
+					<div class="form-input">
+						<i class="bi bi-envelope"></i>
+						<input type="text" name="email" class="form-control" placeholder="{{ lang.email }}">
+					</div>
+					<div class="form-input">
+						<i class="bi bi-lock"></i>
+						<input type="password" name="password" class="form-control" placeholder="{{ lang.password }}">
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="remember" value="remember" id="remember">
+						<label class="form-check-label" for="remember"> {{ lang.remember_me }} </label>
+					</div>
+					<button type="submit" class="btn btn-primary mt-4 signup">Login</button>
+					<div class="text-center mt-4"> <a href="{{route('forgot.password')}}" class="text-decoration-none">{{ lang.forgot_password }}</a> </div>
+					<div class="text-center mt-4"> <span>{{ lang.dont_have_an_account}} </span> <a href="{{route('register')}}" class="text-decoration-none">{{ lang.sign_up }}</a> </div>
+				</div>
+			</div>
+		</div>
+	</form>
+{% endblock %}
+

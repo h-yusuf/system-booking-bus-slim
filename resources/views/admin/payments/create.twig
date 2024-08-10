@@ -1,0 +1,75 @@
+
+{% extends "layouts/app.twig" %}
+
+{% block title %}{{ lang.add }} {{ lang.payments }}{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3"><a href="{{route('payments.index')}}" class="text-dark">{{ lang.payments }}</a></div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.add }} {{ lang.payments }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{route('payments.index')}}"><i class="bi bi-reply font16"></i> {{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                {% include'partials/flash.twig' %}
+                    <div class="card border shadow-none">
+                        <div class="card-body p-5">
+                            <form class="row g-3" method="post" action="{{ route('payments.store') }}" enctype="multipart/form-data">
+                                {{ csrf.field | raw }}
+                        
+                            <div class="col-md-12">
+                               <label class="control-label" for="booking_id">{{ lang.payments_booking_id }}</label>
+                               <select name="booking_id" id="booking_id" class="form-control">
+                                  {% for  info in bookingid %}
+                                    <option value="{{ info.id}}">{{ info.id}}</option>
+                                  {% endfor %}
+                               </select>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label class="control-label" for="amount">{{ lang.payments_amount }}</label>
+	                             <input id="amount" name="amount" class="form-control {{ errors.amount ? ' is-invalid' : '' }}" type="text" maxlength=""  value="" />
+                                {% if errors.amount %}
+                                   <div class="invalid-feedback">{{ errors.amount | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="status">{{ lang.payments_status }}</label>
+	                             <select name="status" id="status" class="form-control {{ errors.status ? ' is-invalid' : '' }}">
+	                               <option value=""></option>
+                                   <option value="pending">pending</option>
+                                   <option value="completed">completed</option>
+                                   <option value="failed">failed</option>
+                                 </select>
+                                {% if errors.status %}
+                                   <div class="invalid-feedback">{{ errors.status | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary px-5" name="btn-save">
+                                   {{ lang.add }}
+                                </button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

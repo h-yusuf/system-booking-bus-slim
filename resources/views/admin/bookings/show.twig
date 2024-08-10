@@ -1,0 +1,158 @@
+{% extends "layouts/app.twig" %}
+{% block title %}{{ lang.bookings }} {{ lang.details }}{% endblock %}
+{% block content %}
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">
+                    <a href="{{ route('bookings.index') }}" class="text-dark">{{ lang.bookings }}</a>
+                </div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.bookings }} {{ lang.details }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{ route('bookings.index') }}">
+                            <i class="bi bi-reply font16"></i>{{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                    <div class="card shadow-none border">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                   
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_user_id }}</h6>
+                                    <span class="text-secondary">{{bookings.user_id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_bus_id }}</h6>
+                                    <span class="text-secondary">{{bookings.bus_id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_seat_id }}</h6>
+                                    <span class="text-secondary">{{bookings.seat_id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_from_location }}</h6>
+                                    <span class="text-secondary">{{bookings.from_location}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_to_location }}</h6>
+                                    <span class="text-secondary">{{bookings.to_location}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_date }}</h6>
+                                    <span class="text-secondary">{{bookings.date}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_time_start }}</h6>
+                                    <span class="text-secondary">{{bookings.time_start}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_time_end }}</h6>
+                                    <span class="text-secondary">{{bookings.time_end}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_status }}</h6>
+                                    <span class="text-secondary">{{bookings.status}}</span>
+                                </li>
+                
+                               
+                            </ul>
+                            
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                   <h6 class="mb-0">{{ lang.tb_users }}</h6>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_id }}</h6>
+                                    <span>{{bookings.tbusers.id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_username }}</h6>
+                                    <span>{{bookings.tbusers.username}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_name }}</h6>
+                                    <span>{{bookings.tbusers.name}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_role }}</h6>
+                                    <span>{{bookings.tbusers.role}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_nik }}</h6>
+                                    <span>{{bookings.tbusers.nik}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_no_hp }}</h6>
+                                    <span>{{bookings.tbusers.no_hp}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_email }}</h6>
+                                    <span>{{bookings.tbusers.email}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_jenis_kelamin }}</h6>
+                                    <span>{{bookings.tbusers.jenis_kelamin}}</span>
+                                </li>
+                            </ul>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                   <h6 class="mb-0">{{ lang.buses }}</h6>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.buses_id }}</h6>
+                                    <span>{{bookings.buses.id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.buses_kode_bus }}</h6>
+                                    <span>{{bookings.buses.kode_bus}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.buses_plat_bus }}</h6>
+                                    <span>{{bookings.buses.plat_bus}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.buses_jumlah_kursi }}</h6>
+                                    <span>{{bookings.buses.jumlah_kursi}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    <p class="text-center">
+                        <a href="{{route('bookings.edit',{'id':bookings.id})}}" class="btn btn-outline-primary">{{ lang.edit }} {{ lang.bookings }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

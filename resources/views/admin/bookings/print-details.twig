@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ lang.bookings }}</title>
+    {% include 'partials/reportcss.twig' %}
+</head>
+<body>
+<h4>{{ lang.bookings_title }}</h4>
+<div class="vItems">
+    <table class="table">
+        <tr>
+            <td>{{ lang.bookings_user_id }}</td>
+            <td>{{bookings.user_id}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_bus_id }}</td>
+            <td>{{bookings.bus_id}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_seat_id }}</td>
+            <td>{{bookings.seat_id}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_from_location }}</td>
+            <td>{{bookings.from_location}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_to_location }}</td>
+            <td>{{bookings.to_location}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_date }}</td>
+            <td>{{bookings.date}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_time_start }}</td>
+            <td>{{bookings.time_start}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_time_end }}</td>
+            <td>{{bookings.time_end}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.bookings_status }}</td>
+            <td>{{bookings.status}}</td>
+        </tr>
+       
+    </table>
+    <h4>{{ lang.tb_users }}</h4>
+                <table class="table">    
+                    <tr>
+                        <td>{{ lang.tbusers_id }}</td>
+                        <td>{{bookings.tbusers.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.tbusers_username }}</td>
+                        <td>{{bookings.tbusers.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.tbusers_name }}</td>
+                        <td>{{bookings.tbusers.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.tbusers_role }}</td>
+                        <td>{{bookings.tbusers.role}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.tbusers_nik }}</td>
+                        <td>{{bookings.tbusers.nik}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.tbusers_no_hp }}</td>
+                        <td>{{bookings.tbusers.no_hp}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.tbusers_email }}</td>
+                        <td>{{bookings.tbusers.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.tbusers_jenis_kelamin }}</td>
+                        <td>{{bookings.tbusers.jenis_kelamin}}</td>
+                    </tr>
+                </table>
+                <h4>{{ lang.buses }}</h4>
+                <table class="table">    
+                    <tr>
+                        <td>{{ lang.buses_id }}</td>
+                        <td>{{bookings.buses.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.buses_kode_bus }}</td>
+                        <td>{{bookings.buses.kode_bus}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.buses_plat_bus }}</td>
+                        <td>{{bookings.buses.plat_bus}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.buses_jumlah_kursi }}</td>
+                        <td>{{bookings.buses.jumlah_kursi}}</td>
+                    </tr>
+                </table>
+                
+</div>
+</body>

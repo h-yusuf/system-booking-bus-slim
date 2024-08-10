@@ -1,0 +1,69 @@
+
+{% extends "layouts/app.twig" %}
+
+{% block title %}{{ lang.add }} {{ lang.buses }}{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3"><a href="{{route('buses.index')}}" class="text-dark">{{ lang.buses }}</a></div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.add }} {{ lang.buses }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{route('buses.index')}}"><i class="bi bi-reply font16"></i> {{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                {% include'partials/flash.twig' %}
+                    <div class="card border shadow-none">
+                        <div class="card-body p-5">
+                            <form class="row g-3" method="post" action="{{ route('buses.store') }}" enctype="multipart/form-data">
+                                {{ csrf.field | raw }}
+                        
+                            <div class="col-md-12">
+                                <label class="control-label" for="kode_bus">{{ lang.buses_kode_bus }}</label>
+	                             <input id="kode_bus" name="kode_bus" class="form-control {{ errors.kode_bus ? ' is-invalid' : '' }}" type="text" maxlength="20"  value="" />
+                                {% if errors.kode_bus %}
+                                   <div class="invalid-feedback">{{ errors.kode_bus | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="plat_bus">{{ lang.buses_plat_bus }}</label>
+	                             <input id="plat_bus" name="plat_bus" class="form-control {{ errors.plat_bus ? ' is-invalid' : '' }}" type="text" maxlength="20"  value="" />
+                                {% if errors.plat_bus %}
+                                   <div class="invalid-feedback">{{ errors.plat_bus | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="jumlah_kursi">{{ lang.buses_jumlah_kursi }}</label>
+	                             <input id="jumlah_kursi" name="jumlah_kursi" class="form-control {{ errors.jumlah_kursi ? ' is-invalid' : '' }}" type="text" maxlength="20"  value="" />
+                                {% if errors.jumlah_kursi %}
+                                   <div class="invalid-feedback">{{ errors.jumlah_kursi | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary px-5" name="btn-save">
+                                   {{ lang.add }}
+                                </button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

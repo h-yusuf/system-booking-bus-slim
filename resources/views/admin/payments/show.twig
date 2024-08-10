@@ -1,0 +1,113 @@
+{% extends "layouts/app.twig" %}
+{% block title %}{{ lang.payments }} {{ lang.details }}{% endblock %}
+{% block content %}
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">
+                    <a href="{{ route('payments.index') }}" class="text-dark">{{ lang.payments }}</a>
+                </div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.payments }} {{ lang.details }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{ route('payments.index') }}">
+                            <i class="bi bi-reply font16"></i>{{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                    <div class="card shadow-none border">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                   
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.payments_booking_id }}</h6>
+                                    <span class="text-secondary">{{payments.booking_id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.payments_amount }}</h6>
+                                    <span class="text-secondary">{{payments.amount}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.payments_status }}</h6>
+                                    <span class="text-secondary">{{payments.status}}</span>
+                                </li>
+                
+                               
+                            </ul>
+                            
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                   <h6 class="mb-0">{{ lang.bookings }}</h6>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_id }}</h6>
+                                    <span>{{payments.bookings.id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_user_id }}</h6>
+                                    <span>{{payments.bookings.user_id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_bus_id }}</h6>
+                                    <span>{{payments.bookings.bus_id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_seat_id }}</h6>
+                                    <span>{{payments.bookings.seat_id}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_from_location }}</h6>
+                                    <span>{{payments.bookings.from_location}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_to_location }}</h6>
+                                    <span>{{payments.bookings.to_location}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_date }}</h6>
+                                    <span>{{payments.bookings.date}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_time_start }}</h6>
+                                    <span>{{payments.bookings.time_start}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_time_end }}</h6>
+                                    <span>{{payments.bookings.time_end}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.bookings_status }}</h6>
+                                    <span>{{payments.bookings.status}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    <p class="text-center">
+                        <a href="{{route('payments.edit',{'id':payments.id})}}" class="btn btn-outline-primary">{{ lang.edit }} {{ lang.payments }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

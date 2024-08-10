@@ -1,0 +1,98 @@
+{% extends "layouts/app.twig" %}
+
+{% block title %}{{ lang.user }} {{ lang.details }}{% endblock %}
+{% block content %}
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">
+                    <a href="{{ route('user.index') }}" class="text-dark">{{ lang.user }}</a>
+                </div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.user }} {{ lang.details }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{ route('user.index') }}">
+                            <i class="bi bi-reply font16"></i>{{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                    <div class="card shadow-none border">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.user_date }}</h6>
+                                    <span class="text-secondary">{{ user.registered|date('d/m/Y h:ia') }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.user_name }}</h6>
+                                    <span class="text-secondary">{{ user.name }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.user_username }}</h6>
+                                    <span class="text-secondary">{{ user.username }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.user_email }}</h6>
+                                    <span class="text-secondary">{{ user.email }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.verified }}</h6>
+                                    <span class="text-secondary">
+                                    {% if user.verified==1 %}
+                                        {{ lang.yes }}
+                                    {% else %}
+                                            {{ lang.no }}
+                                    {% endif %}
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.user_status }}</h6>
+                                    <span class="text-secondary">
+                                    {% if user.user_status==0 %}
+                                        {{ lang.active }}
+                                    {% else %}
+                                        {{ lang.inactive }}
+                                    {% endif %}
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.role }}</h6>
+                                    <span class="text-secondary">
+                                        {% if user.roles_mask==role.super_admin %}{{ lang.role_super_admin }}{% endif %}
+                                        {% if user.roles_mask==role.admin %}{{ lang.role_admin }}{% endif %}
+                                        {% if user.roles_mask==role.user %}{{ lang.role_user }}{% endif %}
+                                        {% if user.roles_mask==0 %}{{ lang.none }}{% endif %}
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.user_last_login }}</h6>
+                                    <span class="text-secondary">
+                                        {% if user.last_login %}
+                                        {{ user.last_login|date('d/m/Y h:ia') }}
+                                        {% else %}
+                                            {{ lang.none }}
+                                        {% endif %}
+                                    </span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-center">
+                        <a href="{{route('user.edit',{'id':user.id})}}" class="btn btn-outline-primary">{{ lang.edit }} {{ lang.user }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

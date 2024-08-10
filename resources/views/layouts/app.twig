@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{{ assets('assets/images/favicon.png')}}" type="image/png" />
+	<link href="{{ assets('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+	<link href="{{ assets('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+	<link href="{{ assets('assets/plugins/metisMenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+	<link href="{{ assets('assets/plugins/datatable/css/datatables.min.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/css/pace.min.css') }}" rel="stylesheet" />
+	<script src="{{ assets('assets/js/pace.min.js') }}"></script>
+	<link href="{{ assets('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/plugins/datetimepicker/css/daterangepicker.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/plugins/datetimepicker/css/bootstrap-clockpicker.min.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/plugins/jquery-confirm/css/jquery-confirm.min.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/plugins/summernote/summernote-lite.min.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/css/app.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/css/bootstrap-icons.css') }}" rel="stylesheet">
+	<link href="{{ assets('assets/css/pagination.css') }}" rel="stylesheet">
+	<title>{% block title %}{% endblock %} | Sobat Gurun Tech</title>
+</head>
+<body>
+<!--wrapper-->
+<div class="wrapper">
+	<!--sidebar wrapper -->
+	<div class="sidebar-wrapper" data-simplebar="true">
+		<div class="sidebar-header">
+			<div>
+				<a href="{{ route('index') }}"><img src="{{ assets('assets/images/logo.jpg')}}" class="logo-icon" alt="logo icon"></a>
+			</div>
+			<div>
+				<h4 class="logo-text"><a href="{{ route('index') }}">Sobat Gurun Tech</a></h4>
+			</div>
+			<div class="toggle-icon ms-auto"><i class='bi bi-list'></i>
+			</div>
+		</div>
+		<!--navigation-->
+		<ul class="metismenu" id="menu">
+			{% if hasRole('super_admin') %}
+				<li>
+					<a href="{{route('home')}}">
+						<div class="parent-icon"><i class='bi bi-speedometer2'></i>
+						</div>
+						<div class="parent-menu">{{ lang.dashboard }}</div>
+					</a>
+				</li>
+				<li>
+					<a href="{{route('user.index')}}">
+						<div class="parent-icon"><i class='bi bi-people'></i>
+						</div>
+						<div class="parent-menu">{{ lang.manage_users }}</div>
+					</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="{{route('profile')}}">
+						<div class="parent-icon"><i class='bi bi-speedometer2'></i>
+						</div>
+						<div class="parent-menu">{{ lang.dashboard }}</div>
+					</a>
+				</li>
+			{% endif %}
+			{% include 'admin/menu.twig' ignore missing %}
+		</ul>
+		<!--end navigation-->
+	</div>
+	<!--end sidebar wrapper -->
+	<!--start header -->
+	<header>
+		{% include 'partials/toolbar.twig' %}
+	</header>
+	<!--end header -->
+	<!--start page wrapper -->
+	{% block content %} {% endblock %}
+	<div class="overlay toggle-icon"></div>
+	<footer class="page-footer">
+		<p class="mb-0">Copyright © {{ "now"|date("Y") }}. All right reserved.</p>
+	</footer>
+</div>
+<!--end wrapper-->
+<script src="{{ assets('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ assets('assets/js/jquery.js')}}"></script>
+<script src="{{ assets('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
+<script src="{{ assets('assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+<script src="{{ assets('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
+<script src="{{ assets('assets/plugins/datatable/js/datatables.min.js')}}"></script>
+<script src="{{ assets('assets/plugins/moment/moment.js')}}"></script>
+<script src="{{ assets('assets/plugins/chartjs/js/Chart.min.js')}}"></script>
+<script src="{{ assets('assets/plugins/datetimepicker/js/daterangepicker.js')}}"></script>
+<script src="{{ assets('assets/plugins/datetimepicker/js/bootstrap-clockpicker.min.js')}}"></script>
+<script src="{{ assets('assets/plugins/jquery-confirm/js/jquery-confirm.min.js')}}"></script>
+<script src="{{ assets('assets/plugins/summernote/summernote-lite.min.js')}}"></script>
+<script src="{{ assets('assets/js/app.js')}}"></script>
+{% include 'partials/globaljs.twig' %}
+{% block innerjs %} {% endblock %}
+
+</body>
+</html>

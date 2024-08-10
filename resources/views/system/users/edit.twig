@@ -1,0 +1,104 @@
+{% extends "layouts/app.twig" %}
+
+{% block title %}{{ lang.edit }} {{ lang.user }}{% endblock %}
+
+{% block content %}
+    <div class="page-wrapper">
+        <div class="page-content">
+
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3"><a href="{{route('user.index')}}" class="text-dark">{{ lang.users }}</a></div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.update }} {{ lang.user }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{route('user.index')}}"><i class="bi bi-reply font16"></i> {{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                    {% include'partials/flash.twig' %}
+                    <div class="card border shadow-none">
+                        <div class="card-body p-5">
+                            <form class="row g-3" method="post" action="{{ route('user.update') }}">
+                                <input name="id" type="hidden" value="{{ user.id }}">
+                                {{ csrf.field | raw }}
+                                <div class="col-md-12">
+                                    <label for="name" class="form-label">{{ lang.user_name }}</label>
+                                    <input type="text" value="{{ user.name }}" class="form-control {{ errors.name ? ' is-invalid' : '' }}" id="name" name="name">
+                                    {% if errors.name %}
+                                        <div class="invalid-feedback">{{ errors.name | first }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="username" class="form-label">{{ lang.user_username }}</label>
+                                    <input type="text" value="{{ user.username }}" class="form-control {{ errors.username ? ' is-invalid' : '' }}" id="username" name="username">
+                                    {% if errors.username %}
+                                        <div class="invalid-feedback">{{ errors.username | first }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="email" class="form-label">{{ lang.user_email }}</label>
+                                    <input type="email" value="{{ user.email }}" class="form-control {{ errors.email ? ' is-invalid' : '' }}" id="email" name="email">
+                                    {% if errors.name %}
+                                        <div class="invalid-feedback">{{ errors.email | first }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="status" class="form-label">{{ lang.user_status }}</label>
+                                    <select class="form-select mb-3" name="status" aria-label="Select">
+                                        {% if user.status==status.normal %}
+                                            <option value="{{ status.normal }}">{{ lang.active }}</option>
+                                            <option value="{{ status.suspended }}">{{ lang.suspend }}</option>
+                                        {% elseif user.status==status.suspended %}
+                                            <option value="{{ status.suspended }}">{{ lang.suspended }}</option>
+                                            <option value="{{ status.normal }}">{{ lang.active }}</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="verified" class="form-label">{{ lang.verified }}</label>
+                                    <select class="form-select mb-3" name="verified" aria-label="Select">
+                                        {% if user.verified==1 %}
+                                            <option value="1">{{ lang.yes }}</option>
+                                            <option value="0">{{ lang.no }}</option>
+                                        {% else %}
+                                            <option value="0">{{ lang.no }}</option>
+                                            <option value="1">{{ lang.yes }}</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="role" class="form-label">{{ lang.role }}</label>
+                                    <select class="form-select mb-3" name="role" aria-label="Select">
+                                        <option value="{{ user.roles_mask }}" readonly="readonly">
+                                            {% if user.roles_mask==role.super_admin %}{{ lang.role_super_admin }}{% endif %}
+                                            {% if user.roles_mask==role.admin %}{{ lang.role_admin }}{% endif %}
+                                            {% if user.roles_mask==role.user %}{{ lang.role_user }}{% endif %}
+                                        </option>
+                                        <option value="{{ role.super_admin }}">{{ lang.role_super_admin }}</option>
+                                        <option value="{{ role.admin }}">{{ lang.role_admin }}</option>
+                                        <option value="{{ role.user }}">{{ lang.role_user }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary px-5">{{ lang.update }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

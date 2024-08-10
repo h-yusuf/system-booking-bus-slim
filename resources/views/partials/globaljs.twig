@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    function deleteFile(url,dataId) {
+        $.confirm({
+            title: '{{ lang.delete_title }}',
+            content: '{{ lang.delete_confirm }}',
+            buttons: {
+                confirm: function () {
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function (data) {
+                            $('div[data-id="row-' + dataId + '"]').slideUp("slow");
+                        },
+                        error: function (data) {
+                            $.alert({title: 'Message Alert!', content: data.message, type: 'red'});
+                        }
+                    });
+                },
+                cancel: function () {
+                }
+            }
+        });
+    }
+
+    //delete
+    function deleteRecord(url){
+        $.confirm({
+            title: '{{ lang.delete_title }}',
+            content: '{{ lang.delete_confirm }}',
+            buttons: {
+                confirm: function () {
+                    $.ajax({
+                        url:url,
+                        type: 'POST',
+                        data: {{ raw }},
+                        success:function(data) {
+                            dataTable.api().ajax.reload();
+                            location.reload();
+                        }
+                    })
+                },
+                cancel: function () {
+                }
+            }
+        });
+    }
+
+</script>

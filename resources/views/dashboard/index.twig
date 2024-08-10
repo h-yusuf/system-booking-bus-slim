@@ -1,0 +1,449 @@
+{% extends "layouts/app.twig" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    {% if hasRole('super_admin') %}
+    <div class="page-wrapper">
+        <div class="page-content">
+            <div class="row dashboard-info row-cols-1 row-cols-md-2 row-cols-xl-4 mb-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">Total Orders</p>
+                                            <h4 class="my-1">5866</h4>
+											<p class="mb-0 font-13">
+												<i class="bi bi-arrow-up-circle text-primary font14"></i>
+												<span class="text-primary">+3.2%</span> Last week
+											</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-auto">
+                                    <div class="rounded-icon ms-auto">
+										<i class="bi bi-bar-chart text-primary"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col">
+									<div class="d-flex align-items-center">
+										<div>
+											<p class="mb-0 text-secondary">Total Revenue</p>
+											<h4 class="my-1">$78,660</h4>
+											<p class="mb-0 font-13">
+												<i class="bi bi-arrow-up-circle text-success font14"></i>
+												<span class="text-success">+1.9%</span> Last week
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col col-auto">
+									<div class="rounded-icon ms-auto">
+										<i class="bi bi-cash text-success"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">Total Expense</p>
+                                            <h4 class="my-1">$52,330</h4>
+                                            <p class="mb-0 font-13">
+                                                <i class="bi bi-arrow-up-circle text-danger font14"></i>
+                                                <span class="text-danger">-1.2%</span> Last week
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-auto">
+                                    <div class="rounded-icon ms-auto">
+                                        <i class="bi bi-arrow-up-left-circle text-danger"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <p class="mb-0 text-secondary">Total Users</p>
+                                            <h4 class="my-1">2230</h4>
+                                            <p class="mb-0 font-13">
+                                                <i class="bi bi-arrow-up-circle text-info font14"></i>
+                                                <span class="text-info">+3.5%</span> Last week
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-auto">
+                                    <div class="rounded-icon ms-auto">
+                                        <i class="bi bi-person-circle text-info"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end row-->
+
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="card radius-10 border shadow-none">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Sales Overview</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center ms-auto font-13 gap-2 my-3">
+                                <span class="border px-1 rounded cursor-pointer">
+                                    <i class="bi bi-circle-fill me-1" style="color: #084298"></i>Sales</span>
+                                <span class="border px-1 rounded cursor-pointer">
+                                    <i class="bi bi-circle-fill me-1" style="color: #DCA12B"></i>Users</span>
+                            </div>
+                            <div class="dashboard-chart1" style="color: #084298">
+                                <canvas id="chart1"></canvas>
+                            </div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3 g-0 row-group text-center border-top">
+                            <div class="col">
+                                <div class="p-3">
+                                    <h5 class="mb-0">4.44M</h5>
+                                    <small class="mb-0">All Users <span> <i class="bx bx-up-arrow-alt align-middle"></i> 2.12%</span></small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3">
+                                    <h5 class="mb-0">9:00</h5>
+                                    <small class="mb-0">Users Duration <span> <i class="bx bx-up-arrow-alt align-middle"></i> 10.33%</span></small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3">
+                                    <h5 class="mb-0">558.36</h5>
+                                    <small class="mb-0">Pages/Visit <span> <i class="bx bx-up-arrow-alt align-middle"></i> 3.58%</span></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card radius-10 border shadow-none">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h6 class="mb-0">By Continent</h6>
+                                </div>
+                            </div>
+                            <div class="dashboard-chart2 mt-4">
+                                <canvas id="chart2"></canvas>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
+                                Australia <span class="badge bg-success rounded-pill">20</span>
+                            </li>
+                            <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
+                                Asia <span class="badge bg-primary rounded-pill">60</span>
+                            </li>
+                            <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
+                                Europe <span class="badge bg-info rounded-pill">15</span>
+                            </li>
+                            <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
+                                Africa <span class="badge bg-twitter text-white rounded-pill">16</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!--end row-->
+
+            <div class="card radius-10 border shadow-none">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h6 class="mb-3">Recent Orders</h6>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="table-light">
+                            <tr>
+                                <th>Product</th>
+                                <th>Number</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Shipping</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Galaxy S22</td>
+                                <td>#3665896</td>
+                                <td><span class="badge bg-primary shadow-sm w-100">Paid</span></td>
+                                <td>$1630.00</td>
+                                <td>01 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-quepal" role="progressbar" style="width: 80%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Iphone 13</td>
+                                <td>#5555822</td>
+                                <td><span class="badge bg-primary text-white shadow-sm w-100">Paid</span></td>
+                                <td>$1530.00</td>
+                                <td>01 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-quepal" role="progressbar" style="width: 80%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>EarPod Pro</td>
+                                <td>#5574122</td>
+                                <td><span class="badge bg-warning text-white shadow-sm w-100">Pending</span>
+                                </td>
+                                <td>$600.00</td>
+                                <td>02 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-deepblue" role="progressbar" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Sony Camera</td>
+                                <td>#1034443</td>
+                                <td><span class="badge bg-danger text-white shadow-sm w-100">Failed</span></td>
+                                <td>$2500.00</td>
+                                <td>03 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 70%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>White Shoes</td>
+                                <td>#8675463</td>
+                                <td><span class="badge bg-success text-white shadow-sm w-100">Completed</span></td>
+                                <td>$650.00</td>
+                                <td>10 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-quepal" role="progressbar" style="width: 100%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>iWatch</td>
+                                <td>#8754556</td>
+                                <td><span class="badge bg-warning text-white shadow-sm w-100">Pending</span>
+                                </td>
+                                <td>$500.00</td>
+                                <td>12 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-blooker" role="progressbar" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Wrist Watch</td>
+                                <td>#7896542</td>
+                                <td><span class="badge bg-danger text-white shadow-sm w-100">Failed</span></td>
+                                <td>$2700.00</td>
+                                <td>13 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 40%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>iWatch</td>
+                                <td>#6789657</td>
+                                <td><span class="badge bg-warning text-white shadow-sm w-100">Pending</span>
+                                </td>
+                                <td>$500.00</td>
+                                <td>12 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-blooker" role="progressbar" style="width: 60%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Wrist Watch</td>
+                                <td>#4544444</td>
+                                <td><span class="badge bg-success text-white shadow-sm w-100">Completed</span></td>
+                                <td>$2700.00</td>
+                                <td>13 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 80%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sony Camera</td>
+                                <td>#1235678</td>
+                                <td><span class="badge bg-info text-white shadow-sm w-100">Shipped</span></td>
+                                <td>$2500.00</td>
+                                <td>03 Feb 2022</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 90%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+    <!--end page wrapper -->
+
+{% endblock %}
+
+{% block innerjs %}
+    <script>
+        $(function() {
+            "use strict";
+// chart 1
+            var ctx = document.getElementById("chart1").getContext('2d');
+
+            var stroke1 = ctx.createLinearGradient(0, 0, 0, 200);
+            stroke1.addColorStop(0, '#084298');
+
+            var stroke2 = ctx.createLinearGradient(0, 0, 0, 200);
+            stroke2.addColorStop(0, '#b97429');
+
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Sales',
+                        data: [65, 59, 80, 81,65, 59, 80, 81,59, 80, 81,65],
+                        borderColor: stroke1,
+                        backgroundColor: stroke1,
+                        hoverBackgroundColor: stroke1,
+                        pointRadius: 0,
+                        fill: false,
+                        borderWidth: 0,
+                        borderRadius:10,
+                        maxBarThickness: 10,
+                    }, {
+                        label: 'Users',
+                        data: [28, 48, 40, 19,28, 48, 40, 19,40, 19,28, 48],
+                        borderColor: stroke2,
+                        backgroundColor: stroke2,
+                        hoverBackgroundColor: stroke2,
+                        pointRadius: 0,
+                        fill: false,
+                        borderWidth: 0,
+                        borderRadius:10,
+                        maxBarThickness: 10,
+                    }]
+                },
+
+                options:{
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        display: false,
+                        labels: {
+                            boxWidth:6
+                        }
+                    },
+                    tooltips: {
+                        displayColors:false,
+                    },
+                    scales: {
+                        xAxes: [{
+                            barPercentage: .4
+                        }]
+                    }
+                }
+            });
+
+
+            // chart 2
+            var ctx = document.getElementById("chart2").getContext('2d');
+
+            var stroke1 = ctx.createLinearGradient(0, 0, 0, 200);
+            stroke1.addColorStop(0, '#2E79B4');
+
+            var stroke2 = ctx.createLinearGradient(0, 0, 0, 200);
+            stroke2.addColorStop(0, '#4f63e7');
+
+            var stroke3 = ctx.createLinearGradient(0, 0, 0, 200);
+            stroke3.addColorStop(0, '#86b7fe');
+
+            var stroke4 = ctx.createLinearGradient(0, 0, 0, 200);
+            stroke4.addColorStop(0, '#42e695');
+
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ["Africa", "Asia", "Europe", "Australia"],
+                    datasets: [{
+                        backgroundColor: [stroke1, stroke2, stroke3, stroke4],
+                        hoverBackgroundColor: [stroke1, stroke2, stroke3, stroke4],
+                        data: [20, 60, 15, 16],
+                        borderWidth: [1, 1, 1, 1],
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    cutoutPercentage: 85,
+                    legend: {
+                        position: 'bottom',
+                        display: false,
+                        labels: {
+                            boxWidth:6
+                        }
+                    },
+                    tooltips: {
+                        displayColors:false,
+                    }
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

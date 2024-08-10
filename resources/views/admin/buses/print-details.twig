@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ lang.buses }}</title>
+    {% include 'partials/reportcss.twig' %}
+</head>
+<body>
+<h4>{{ lang.buses_title }}</h4>
+<div class="vItems">
+    <table class="table">
+        <tr>
+            <td>{{ lang.buses_kode_bus }}</td>
+            <td>{{buses.kode_bus}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.buses_plat_bus }}</td>
+            <td>{{buses.plat_bus}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.buses_jumlah_kursi }}</td>
+            <td>{{buses.jumlah_kursi}}</td>
+        </tr>
+       
+    </table>
+    
+</div>
+</body>

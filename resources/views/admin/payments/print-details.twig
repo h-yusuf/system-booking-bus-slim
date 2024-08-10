@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ lang.payments }}</title>
+    {% include 'partials/reportcss.twig' %}
+</head>
+<body>
+<h4>{{ lang.payments_title }}</h4>
+<div class="vItems">
+    <table class="table">
+        <tr>
+            <td>{{ lang.payments_booking_id }}</td>
+            <td>{{payments.booking_id}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.payments_amount }}</td>
+            <td>{{payments.amount}}</td>
+        </tr>
+       <tr>
+            <td>{{ lang.payments_status }}</td>
+            <td>{{payments.status}}</td>
+        </tr>
+       
+    </table>
+    <h4>{{ lang.bookings }}</h4>
+                <table class="table">    
+                    <tr>
+                        <td>{{ lang.bookings_id }}</td>
+                        <td>{{payments.bookings.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_user_id }}</td>
+                        <td>{{payments.bookings.user_id}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_bus_id }}</td>
+                        <td>{{payments.bookings.bus_id}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_seat_id }}</td>
+                        <td>{{payments.bookings.seat_id}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_from_location }}</td>
+                        <td>{{payments.bookings.from_location}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_to_location }}</td>
+                        <td>{{payments.bookings.to_location}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_date }}</td>
+                        <td>{{payments.bookings.date}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_time_start }}</td>
+                        <td>{{payments.bookings.time_start}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_time_end }}</td>
+                        <td>{{payments.bookings.time_end}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ lang.bookings_status }}</td>
+                        <td>{{payments.bookings.status}}</td>
+                    </tr>
+                </table>
+                
+</div>
+</body>

@@ -1,0 +1,83 @@
+{% extends "layouts/app.twig" %}
+{% block title %}{{ lang.tbusers }} {{ lang.details }}{% endblock %}
+{% block content %}
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">
+                    <a href="{{ route('tbusers.index') }}" class="text-dark">{{ lang.tbusers }}</a>
+                </div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.tbusers }} {{ lang.details }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{ route('tbusers.index') }}">
+                            <i class="bi bi-reply font16"></i>{{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                    <div class="card shadow-none border">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                   
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_username }}</h6>
+                                    <span class="text-secondary">{{tbusers.username}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_password }}</h6>
+                                    <span class="text-secondary">{{tbusers.password}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_name }}</h6>
+                                    <span class="text-secondary">{{tbusers.name}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_role }}</h6>
+                                    <span class="text-secondary">{{tbusers.role}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_nik }}</h6>
+                                    <span class="text-secondary">{{tbusers.nik}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_no_hp }}</h6>
+                                    <span class="text-secondary">{{tbusers.no_hp}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_email }}</h6>
+                                    <span class="text-secondary">{{tbusers.email}}</span>
+                                </li>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">{{ lang.tbusers_jenis_kelamin }}</h6>
+                                    <span class="text-secondary">{{tbusers.jenis_kelamin}}</span>
+                                </li>
+                
+                               
+                            </ul>
+                            
+                        </div>
+                    <p class="text-center">
+                        <a href="{{route('tbusers.edit',{'id':tbusers.id})}}" class="btn btn-outline-primary">{{ lang.edit }} {{ lang.tbusers }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

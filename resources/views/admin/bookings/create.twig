@@ -1,0 +1,125 @@
+
+{% extends "layouts/app.twig" %}
+
+{% block title %}{{ lang.add }} {{ lang.bookings }}{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3"><a href="{{route('bookings.index')}}" class="text-dark">{{ lang.bookings }}</a></div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.add }} {{ lang.bookings }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{route('bookings.index')}}"><i class="bi bi-reply font16"></i> {{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                {% include'partials/flash.twig' %}
+                    <div class="card border shadow-none">
+                        <div class="card-body p-5">
+                            <form class="row g-3" method="post" action="{{ route('bookings.store') }}" enctype="multipart/form-data">
+                                {{ csrf.field | raw }}
+                        
+                            <div class="col-md-12">
+                               <label class="control-label" for="user_id">{{ lang.bookings_user_id }}</label>
+                               <select name="user_id" id="user_id" class="form-control">
+                                  {% for  info in userid %}
+                                    <option value="{{ info.id}}">{{ info.id}}</option>
+                                  {% endfor %}
+                               </select>
+                            </div>
+                            
+                            <div class="col-md-12">
+                               <label class="control-label" for="bus_id">{{ lang.bookings_bus_id }}</label>
+                               <select name="bus_id" id="bus_id" class="form-control">
+                                  {% for  info in busid %}
+                                    <option value="{{ info.id}}">{{ info.id}}</option>
+                                  {% endfor %}
+                               </select>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label class="control-label" for="seat_id">{{ lang.bookings_seat_id }}</label>
+	                             <input id="seat_id" name="seat_id" class="form-control {{ errors.seat_id ? ' is-invalid' : '' }}" type="text" maxlength=""  value="" />
+                                {% if errors.seat_id %}
+                                   <div class="invalid-feedback">{{ errors.seat_id | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="from_location">{{ lang.bookings_from_location }}</label>
+	                             <input id="from_location" name="from_location" class="form-control {{ errors.from_location ? ' is-invalid' : '' }}" type="text" maxlength="100"  value="" />
+                                {% if errors.from_location %}
+                                   <div class="invalid-feedback">{{ errors.from_location | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="to_location">{{ lang.bookings_to_location }}</label>
+	                             <input id="to_location" name="to_location" class="form-control {{ errors.to_location ? ' is-invalid' : '' }}" type="text" maxlength="100"  value="" />
+                                {% if errors.to_location %}
+                                   <div class="invalid-feedback">{{ errors.to_location | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="date">{{ lang.bookings_date }}</label>
+	                             <input id="date" name="date" type="text" class="date form-control {{ errors.date ? ' is-invalid' : '' }}" value="" />
+                                {% if errors.date %}
+                                   <div class="invalid-feedback">{{ errors.date | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="time_start">{{ lang.bookings_time_start }}</label>
+	                             <input id="time_start" name="time_start" type="text" class="time form-control {{ errors.time_start ? ' is-invalid' : '' }}" value="" />
+                                {% if errors.time_start %}
+                                   <div class="invalid-feedback">{{ errors.time_start | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="time_end">{{ lang.bookings_time_end }}</label>
+	                             <input id="time_end" name="time_end" type="text" class="time form-control {{ errors.time_end ? ' is-invalid' : '' }}" value="" />
+                                {% if errors.time_end %}
+                                   <div class="invalid-feedback">{{ errors.time_end | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="status">{{ lang.bookings_status }}</label>
+	                             <select name="status" id="status" class="form-control {{ errors.status ? ' is-invalid' : '' }}">
+	                               <option value=""></option>
+                                   <option value="pending">pending</option>
+                                   <option value="completed">completed</option>
+                                   <option value="cancelled">cancelled</option>
+                                   <option value="booked">booked</option>
+                                 </select>
+                                {% if errors.status %}
+                                   <div class="invalid-feedback">{{ errors.status | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary px-5" name="btn-save">
+                                   {{ lang.add }}
+                                </button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
